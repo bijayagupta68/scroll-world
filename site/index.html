@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>CHRONOPOLIS — The world inside the clock</title>
+  <meta name="description" content="A descent from the rim fields to the escapement heart — Chronopolis, a civilization born inside a functioning clock the size of weather." />
+  <style>
+    :root, .sw-root {
+      --sw-bg: #171412;
+      --sw-ink: #E8DCC8;
+      --sw-ink-soft: #8A7D6E;
+      --sw-accent: #C9A86A;
+      --sw-font-display: ui-serif, Georgia, Times, serif;
+      --sw-font-body: ui-sans-system, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
+    }
+    html,body { margin:0; background: var(--sw-bg); overscroll-behavior: none; }
+    /* lore block at very end as fallback after canvas */
+    .sw-after {
+      position: relative;
+      z-index: 5;
+      background: #12100F;
+      border-top: 1px solid #C9A86A22;
+      padding: 80px clamp(18px,5vw,64px);
+      color: #8A7D6E;
+      font-family: ui-monospace, Menlo, monospace;
+      font-size: .78rem;
+      line-height: 1.6;
+      letter-spacing: .02em;
+    }
+    .sw-after h3 { color: #C9A86A; font-family: ui-serif, Georgia, serif; font-size: 1.2rem; margin: 0 0 12px; }
+    .sw-after code { color:#E8A735; background:#1E1B19; padding:2px 6px; border-radius:4px; }
+  </style>
+</head>
+<body>
+  <div id="top"></div>
+  <div id="world"></div>
+
+  <script src="scrub-engine.js"></script>
+  <script>
+    mountScrollWorld(document.getElementById('world'), {
+      brand: { name: 'CHRONOPOLIS', href: '#top' },
+      cta: { label: 'Descend', href: '#rim-fields' },
+      hint: 'scroll to descend',
+      scrollPer: 1.3,
+      depth: 0.06,
+      zoom: 0.18,
+      crossfade: 0.16,
+      atmosphere: true,
+      nav: true,
+      sections: [
+        {
+          id: 'rim-fields',
+          label: 'Rim Fields',
+          still: 'assets/rim_fields.webp',
+          depth: 'assets/depth_rim_fields.png',
+          focal: [0.52, 0.45],
+          scroll: 1.9,
+          linger: 0.38,
+          depthAmt: 0.02,
+          zoom: 0.08,
+          accent: '#C9A86A',
+          eyebrow: 'OUTER LIMIT — RING-01',
+          title: 'Where a season is one tooth.',
+          body: 'We farm the gear itself. Terraces cut into teeth the size of hills, windmills shaped like clock hands waiting for the world to grind forward. The first light is always forge-light.',
+          tags: ['T-1847','Season-Tooth','Verdigris Furrow']
+        },
+        {
+          id: 'ratchet-yards',
+          label: 'Ratchet Yards',
+          still: 'assets/ratchet_yards.webp',
+          depth: 'assets/depth_ratchet_yards.png',
+          focal: [0.52, 0.48],
+          scroll: 1.5,
+          linger: 0.2,
+          depthAmt: 0.035,
+          zoom: 0.12,
+          accent: '#B08D57',
+          eyebrow: 'THE LIFT — RING-02',
+          title: 'Nothing climbs. It ratchets.',
+          body: 'Cargo rides pawls up from the deep rings, workers clipped to teeth. Each click up is a day of work somewhere below. You hear the yards before you see them.',
+          tags: ['T-09412','Pawl-Hoist','Click-Freight']
+        },
+        {
+          id: 'foundry-rings',
+          label: 'Foundry Rings',
+          still: 'assets/foundry_rings.webp',
+          depth: 'assets/depth_foundry_rings.png',
+          focal: [0.5, 0.44],
+          scroll: 1.4,
+          linger: 0.22,
+          depthAmt: 0.045,
+          zoom: 0.15,
+          accent: '#E8A735',
+          eyebrow: 'TEETH OF TEETH — RING-03',
+          title: 'We cast what the world wears out.',
+          body: 'Forges recut replacement teeth for gears older than any archive. Apprentices learn brass by smell, and chimneys paint the ring amber at all hours.',
+          tags: ['T-43750','Molten Brass','Worn Profiles']
+        },
+        {
+          id: 'verge-market',
+          label: 'Verge Market',
+          still: 'assets/verge_market.webp',
+          depth: 'assets/depth_verge_market.png',
+          focal: [0.48, 0.46],
+          scroll: 1.3,
+          linger: 0.25,
+          depthAmt: 0.055,
+          zoom: 0.18,
+          accent: '#D99A2E',
+          eyebrow: 'THE SWING — RING-04',
+          title: 'The market never stands still.',
+          body: 'Built on a balance wheel, the whole district sways. Traders brace without thinking, lanterns drawing amber arcs while deals keep time with the oscillation.',
+          tags: ['T-128891','Oscillation','Lantern Arc']
+        },
+        {
+          id: 'chime-quarter',
+          label: 'Chime Quarter',
+          still: 'assets/chime_quarter.webp',
+          depth: 'assets/depth_chime_quarter.png',
+          focal: [0.5, 0.40],
+          scroll: 1.2,
+          linger: 0.25,
+          depthAmt: 0.06,
+          zoom: 0.20,
+          accent: '#C9A86A',
+          eyebrow: 'THE HOUR — RING-05',
+          title: 'We live inside the bell.',
+          body: 'Housing carved into a bell assembly. Every hour the quarter sings and laundry jumps on hammer-arms. You set your kettle by resonance, not by numbers.',
+          tags: ['T-259003','Resonance','Bell-Housing']
+        },
+        {
+          id: 'governor-spiral',
+          label: "Governor's Spiral",
+          still: 'assets/governor_spiral.webp',
+          depth: 'assets/depth_governor_spiral.png',
+          focal: [0.52, 0.50],
+          scroll: 1.1,
+          linger: 0.22,
+          depthAmt: 0.065,
+          zoom: 0.22,
+          accent: '#4A7D6F',
+          eyebrow: 'THE DESCENT OFFICE — RING-06',
+          title: 'Bureaucracy spirals inward.',
+          body: 'A helical-gear stair-city named for the flyball governor that steadies us. Forms descend faster than people. The deeper you go, the smaller the print.',
+          tags: ['T-512477','Helical','Flyball']
+        },
+        {
+          id: 'jeweled-bearings',
+          label: 'Jeweled Bearings',
+          still: 'assets/jeweled_bearings.webp',
+          depth: 'assets/depth_jeweled_bearings.png',
+          focal: [0.58, 0.42],
+          scroll: 1.0,
+          linger: 0.20,
+          depthAmt: 0.07,
+          zoom: 0.24,
+          accent: '#A12034',
+          eyebrow: 'THE BEARING RICH — RING-07',
+          title: 'Mansions in ruby housings.',
+          body: 'The only district that can afford jewels. Houses set directly into ruby bearing cups, glowing one red at a time. The rest of Chronopolis sees its light secondhand.',
+          tags: ['T-1047299','RUBY-VERIFIED','Jewel-Cup']
+        },
+        {
+          id: 'mainplate-depths',
+          label: 'Mainplate Depths',
+          still: 'assets/mainplate_depths.webp',
+          depth: 'assets/depth_mainplate_depths.png',
+          focal: [0.5, 0.42],
+          scroll: 0.9,
+          linger: 0.18,
+          depthAmt: 0.075,
+          zoom: 0.26,
+          accent: '#8A7A65',
+          eyebrow: 'THE CORE LEDGER — RING-08',
+          title: 'Axles tall as towers. Archives.',
+          body: 'Catwalks between axle towers. Archivists keep blueprints of worn gears that no longer exist, and of gears that have not worn yet. Darker and denser than every ring above it.',
+          tags: ['T-2084421','Archivists','Axle-Tower']
+        },
+        {
+          id: 'barrel-vault',
+          label: 'Barrel Vault',
+          still: 'assets/barrel_vault.webp',
+          depth: 'assets/depth_barrel_vault.png',
+          focal: [0.5, 0.48],
+          scroll: 0.9,
+          linger: 0.30,
+          depthAmt: 0.08,
+          zoom: 0.28,
+          accent: '#E8A735',
+          eyebrow: 'THE WOUND TENSION — RING-09',
+          title: 'The mainspring, coiled and listening.',
+          body: 'The vault hums with stored seasons. Keepers monitor wind like monks, reverent and quiet in amber glow that the coil itself seems to give off.',
+          tags: ['T-4194303','Stored Light','Wind-Keepers']
+        },
+        {
+          id: 'escapement-heart',
+          label: 'Escapement Heart',
+          still: 'assets/escapement_heart.webp',
+          depth: 'assets/depth_escapement_heart.png',
+          focal: [0.5, 0.50],
+          scroll: 1.6,
+          linger: 0.60,
+          depthAmt: 0.045,
+          zoom: 0.38,
+          accent: '#C9A86A',
+          eyebrow: 'THE TICK — RING-10',
+          title: 'A chapel the size of a heartbeat.',
+          body: 'Built directly around the ticking escapement. Keepers count each tick as religion. Smallest, deepest, most intimate room in the world — the one room everyone agrees is a heart.',
+          tags: ['T-8388607','HEARTBEAT','Keeper Count']
+        },
+        {
+          id: 'overwind',
+          label: 'The Overwind',
+          still: 'assets/overwind.webp',
+          depth: 'assets/depth_overwind.png',
+          focal: [0.5, 0.48],
+          scroll: 2.2,
+          linger: 0.0,
+          depthAmt: 0.05,
+          zoom: 0.34,
+          reverse: true,
+          accent: '#E8A735',
+          eyebrow: 'THE PULL-BACK — TOTAL',
+          title: 'The shot nobody inside has ever seen.',
+          body: 'One pull back to show it — farm to heart, bell to spring, ruby to soot. All rings at once. A single mechanism nobody born inside was ever tall enough to see. Scholars argued whether it was clock, god, or coincidence.',
+          tags: ['T-16777215','TOTAL OVERWIND','Chronopolis'],
+          cta: {
+            primary: { label: 'Begin again at the rim', href: '#top' },
+            secondary: { label: 'Read the tooth-counts', href: '#mainplate-depths' }
+          }
+        }
+      ]
+    });
+  </script>
+
+  <div class="sw-after">
+    <h3>Chronopolis — build notes</h3>
+    <p>Palette <code>#C9A86A aged brass</code> <code>#4A7D6F verdigris</code> <code>#E8A735 amber glow</code> <code>#171412 soot-black</code> <code>#A12034 ruby accent (Ring-07 only)</code>. No blue, no daylight-white. Material: riveted plate, cut gear teeth, pressure-fit joints, exposed screws. Light: low warm forge glow / amber phosphorescence. Motif: stenciled tooth-count plate in every scene doubles as progress marker.</p>
+    <p>Motion mapping: Scene 1 lowest depth-displacement + slowest zoom (scroll 1.9, depth 0.02, zoom 0.08). Scenes 2–9 step up: 0.035→0.08 depth, 0.12→0.28 zoom, scroll shortens 1.5→0.9. Scene 10 tightest crop (0.38) + slowest settle linger 0.6. Scene 11 reverse true = pull-back reveal instead of push-in.</p>
+    <p>Assets: 11 stills (10 AI via generate_image + 1 composite overwind) + 11 synthetic depth maps (white=near, black=far, PIL-generated with per-scene foreground masks to give Depth-Anything real geometry). No video, no credits. Shader synthesizes camera at runtime.</p>
+  </div>
+</body>
+</html>
