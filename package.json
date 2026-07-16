@@ -1,0 +1,18 @@
+{
+  "name": "chronopolis",
+  "version": "1.0.0",
+  "description": "Chronopolis — a civilization inside a functioning clock the size of weather. Scroll-world descent from rim fields to escapement heart.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0 --port 3000",
+    "build": "vite build",
+    "preview": "vite preview --port 3000",
+    "serve": "python3 -m http.server 8000"
+  },
+  "keywords": ["scroll-world", "parallax", "depth-map", "webgl", "chronopolis", "clockwork"],
+  "author": "bijayagupta68",
+  "license": "MIT",
+  "devDependencies": {
+    "vite": "^5.4.0"
+  }
+}
